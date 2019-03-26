@@ -3,7 +3,12 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'signing'
 apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
 apply from: "$rootDir/coverage.gradle"
+
+jacoco {
+    toolVersion = "0.8.2"
+}
 
 Properties versionProperties = new Properties();
 versionProperties.load(new File(rootDir, "src/main/resources/version.properties").newInputStream())
@@ -23,8 +28,8 @@ repositories {
 dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.6'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6'
-    compile 'org.apache.httpcomponents:httpclient:4.5.2'
-    compile 'org.apache.httpcomponents:httpmime:4.5.2'
+    compile 'org.apache.httpcomponents:httpclient:4.5.6'
+    compile 'org.apache.httpcomponents:httpmime:4.5.6'
 
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
 
@@ -60,7 +65,7 @@ test {
 }
 
 task integrationTest(type: Test) {
-    testClassesDir = sourceSets.integrationTest.output.classesDir
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
     outputs.upToDateWhen { false }
 
