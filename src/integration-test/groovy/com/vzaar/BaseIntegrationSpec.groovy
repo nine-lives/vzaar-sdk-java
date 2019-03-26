@@ -77,23 +77,10 @@ public class BaseIntegrationSpec extends Specification {
         }
     }
 
-    protected void waitForPending() {
-        while (vzaar.videos().list().withState(VideoState.processing).results().totalCount > 0) {
-            try {
-                sleep(10000)
-            } catch (Exception ignore) {
-            }
-        }
-    }
-
     protected void waitForVideo(Video video) {
-        Video waitForVideo
-        while (waitForVideo == null || waitForVideo.state == VideoState.processing) {
+        while (vzaar.videos().list().withEscapedQuery(video.title).results().totalCount == 0) {
             try {
                 sleep(10000)
-                waitForVideo = vzaar.videos().get(video.id)
-            } catch(UnrecognizedPropertyException e) {
-                throw e
             } catch (Exception ignore) {
             }
         }

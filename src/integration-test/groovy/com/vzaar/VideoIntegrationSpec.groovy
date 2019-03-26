@@ -123,7 +123,7 @@ class VideoIntegrationSpec extends BaseIntegrationSpec {
 
     def "I can search for a video by title"() {
         given:
-        Page<Video> allVideosPage = vzaar.videos().list().withSortByAttribute("created_at").withSortDirection(SortDirection.desc).results()
+        Page<Video> allVideosPage = vzaar.videos().list().withSortByAttribute("created_at").withSortDirection(SortDirection.asc).results()
 
         when:
         Page<Video> searchVideosPage = vzaar.videos().list().withSortByAttribute("title").withEscapedQuery(allVideosPage.data[0].title).results()
@@ -214,17 +214,18 @@ class VideoIntegrationSpec extends BaseIntegrationSpec {
 
     def "I can upload a video via a link"() {
         when:
+        String title = "Link video" + UUID.randomUUID().toString()
         Video video = vzaar.videos().uploadWithLink()
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle(title)
                 .result()
 
         then:
         video.id
         video.description == 'Link video description'
-        video.title == 'Link video'
+        video.title == title
 
         cleanup:
         if (video) {
@@ -238,7 +239,7 @@ class VideoIntegrationSpec extends BaseIntegrationSpec {
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle("Link video" + UUID.randomUUID().toString())
                 .result()
 
         when:
@@ -259,7 +260,7 @@ class VideoIntegrationSpec extends BaseIntegrationSpec {
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle("Link video" + UUID.randomUUID().toString())
                 .result()
 
         when:

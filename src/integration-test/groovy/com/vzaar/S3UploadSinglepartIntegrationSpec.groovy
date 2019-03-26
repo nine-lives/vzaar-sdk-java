@@ -11,8 +11,6 @@ class S3UploadSinglepartIntegrationSpec extends BaseIntegrationSpec {
                 .withFilesize(smallVideo.size())
                 .result()
 
-        println (signature.filesize)
-
         when:
         vzaar.videos().customUploader.upload(signature, smallVideo);
         Video entity = vzaar.videos().customUploader.createVideo()

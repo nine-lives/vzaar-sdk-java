@@ -17,7 +17,7 @@ class SubtitlesIntegrationSpec extends BaseIntegrationSpec {
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle("Link video" + UUID.randomUUID().toString())
                 .result()
 
         when:
@@ -147,7 +147,7 @@ class SubtitlesIntegrationSpec extends BaseIntegrationSpec {
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle("Link video" + UUID.randomUUID().toString())
                 .result()
 
         when:
@@ -190,7 +190,7 @@ class SubtitlesIntegrationSpec extends BaseIntegrationSpec {
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle("Link video" + UUID.randomUUID().toString())
                 .result()
 
         when:
@@ -300,7 +300,7 @@ class SubtitlesIntegrationSpec extends BaseIntegrationSpec {
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle("Link video" + UUID.randomUUID().toString())
                 .result()
 
         when:
@@ -367,7 +367,7 @@ class SubtitlesIntegrationSpec extends BaseIntegrationSpec {
                 .withUrl("https://github.com/nine-lives/vzaar-sdk-java/raw/master/src/integration-test/resources/videos/small.mp4")
                 .withUploader("integration-test")
                 .withDescription("Link video description")
-                .withTitle("Link video")
+                .withTitle("Link video" + UUID.randomUUID().toString())
                 .result()
         Subtitle subtitle = vzaar.subtitles().create(video.getId())
                 .withCode("en")
